@@ -1,0 +1,7 @@
+confirm: false
+local:
+  - master
+remotes:
+  origin:
+    - master
+    - develop
