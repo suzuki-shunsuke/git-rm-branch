@@ -27,6 +27,9 @@ func main() {
 				},
 				cli.BoolFlag{
 					Name: "quiet",
+				},
+				cli.BoolFlag{
+					Name: "local",
 				}},
 		},
 	}

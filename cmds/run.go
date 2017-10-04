@@ -145,7 +145,7 @@ func getCfg(wd string) (*models.Cfg, error) {
 	return &cfg, err
 }
 
-func runCore(isDryRun, isQuiet bool) error {
+func runCore(isDryRun, isQuiet, isOnlyLocal bool) error {
 	// remove branches
 	// find configuration file
 	if isDryRun && isQuiet {
@@ -163,13 +163,17 @@ func runCore(isDryRun, isQuiet bool) error {
 	if err != nil {
 		return err
 	}
+	if isOnlyLocal {
+		return nil
+	}
 	return rmRemoteBranch(*cfg, isDryRun, isQuiet)
 }
 
 func Run(c *cli.Context) error {
 	isDryRun := c.Bool("dry-run")
 	isQuiet := c.Bool("quiet")
-	err := runCore(isDryRun, isQuiet)
+	isOnlyLocal := c.Bool("local")
+	err := runCore(isDryRun, isQuiet, isOnlyLocal)
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
