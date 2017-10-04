@@ -24,6 +24,9 @@ func main() {
 			Flags: []cli.Flag{
 				cli.BoolFlag{
 					Name: "dry-run",
+				},
+				cli.BoolFlag{
+					Name: "quiet",
 				}},
 		},
 	}

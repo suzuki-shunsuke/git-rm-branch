@@ -17,7 +17,7 @@ import (
 	"github.com/suzuki-shunsuke/git-rm-branch/services"
 )
 
-func rmLocalBranch(cfg models.Cfg, isDryRun bool) error {
+func rmLocalBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 	// remove local branches
 	removedBranchCandidates := map[string]string{}
 	// list branches
@@ -49,7 +49,9 @@ func rmLocalBranch(cfg models.Cfg, isDryRun bool) error {
 		}
 	}
 	if len(gitBranchCmdArgs) == 2 {
-		fmt.Println("no local branch is removed")
+		if !isQuiet {
+			fmt.Println("No local branch is removed.")
+		}
 		return nil
 	}
 	// remove branches
@@ -57,14 +59,16 @@ func rmLocalBranch(cfg models.Cfg, isDryRun bool) error {
 	if isDryRun {
 		fmt.Printf("[Dry Run] git %s\n", strings.Join(gitBranchCmdArgs, " "))
 	} else {
-		fmt.Printf("git %s\n", strings.Join(gitBranchCmdArgs, " "))
+		if !isQuiet {
+			fmt.Printf("git %s\n", strings.Join(gitBranchCmdArgs, " "))
+		}
 		_, err := exec.Command("git", gitBranchCmdArgs...).Output()
 		return err
 	}
 	return nil
 }
 
-func rmRemoteBranch(cfg models.Cfg, isDryRun bool) error {
+func rmRemoteBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 	// remove remote branches
 	// list branches
 	//   git branch -r --merged master
@@ -100,14 +104,18 @@ func rmRemoteBranch(cfg models.Cfg, isDryRun bool) error {
 			}
 		}
 		if len(gitPushCmdArgs) == 3 {
-			fmt.Println("no remote branch is removed")
+			if !isQuiet {
+				fmt.Println("No remote branch is removed.")
+			}
 			continue
 		}
 		// remove branches
 		if isDryRun {
 			fmt.Printf("[Dry Run] git %s\n", strings.Join(gitPushCmdArgs, " "))
 		} else {
-			fmt.Printf("git %s\n", strings.Join(gitPushCmdArgs, " "))
+			if !isQuiet {
+				fmt.Printf("git %s\n", strings.Join(gitPushCmdArgs, " "))
+			}
 			_, err := exec.Command("git", gitPushCmdArgs...).Output()
 			if err != nil {
 				return err
@@ -124,7 +132,7 @@ func getCfg(wd string) (*models.Cfg, error) {
 	}
 	dest := filepath.Join(rootDir, services.CONFIG_FILENAME)
 	if _, err = os.Stat(dest); err != nil {
-		return nil, errors.New("configuration file is not found")
+		return nil, errors.New("Configuration file is not found.")
 	}
 	// read configuration file
 	buf, err := ioutil.ReadFile(dest)
@@ -137,9 +145,12 @@ func getCfg(wd string) (*models.Cfg, error) {
 	return &cfg, err
 }
 
-func runCore(isDryRun bool) error {
+func runCore(isDryRun, isQuiet bool) error {
 	// remove branches
 	// find configuration file
+	if isDryRun && isQuiet {
+		return errors.New("Both --dry-run and --quiet options must not be used.")
+	}
 	wd, err := os.Getwd()
 	if err != nil {
 		return err
@@ -148,16 +159,17 @@ func runCore(isDryRun bool) error {
 	if err != nil {
 		return err
 	}
-	err = rmLocalBranch(*cfg, isDryRun)
+	err = rmLocalBranch(*cfg, isDryRun, isQuiet)
 	if err != nil {
 		return err
 	}
-	return rmRemoteBranch(*cfg, isDryRun)
+	return rmRemoteBranch(*cfg, isDryRun, isQuiet)
 }
 
 func Run(c *cli.Context) error {
 	isDryRun := c.Bool("dry-run")
-	err := runCore(isDryRun)
+	isQuiet := c.Bool("quiet")
+	err := runCore(isDryRun, isQuiet)
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
