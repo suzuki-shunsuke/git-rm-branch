@@ -21,8 +21,11 @@ func main() {
 			Name:   "run",
 			Usage:  "remove branches",
 			Action: cmds.Run,
+			Flags: []cli.Flag{
+				cli.BoolFlag{
+					Name: "dry-run",
+				}},
 		},
 	}
-
 	app.Run(os.Args)
 }

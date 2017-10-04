@@ -17,7 +17,7 @@ import (
 	"github.com/suzuki-shunsuke/git-rm-branch/services"
 )
 
-func rmLocalBranch(cfg models.Cfg) error {
+func rmLocalBranch(cfg models.Cfg, isDryRun bool) error {
 	// remove local branches
 	removedBranchCandidates := map[string]string{}
 	// list branches
@@ -54,18 +54,20 @@ func rmLocalBranch(cfg models.Cfg) error {
 	}
 	// remove branches
 	//   git branch -d %
-	fmt.Printf("git %s\n", strings.Join(gitBranchCmdArgs, " "))
-	_, err := exec.Command("git", gitBranchCmdArgs...).Output()
-	return err
+	if isDryRun {
+		fmt.Printf("[Dry Run] git %s\n", strings.Join(gitBranchCmdArgs, " "))
+	} else {
+		fmt.Printf("git %s\n", strings.Join(gitBranchCmdArgs, " "))
+		_, err := exec.Command("git", gitBranchCmdArgs...).Output()
+		return err
+	}
+	return nil
 }
 
-func rmRemoteBranch(cfg models.Cfg) error {
+func rmRemoteBranch(cfg models.Cfg, isDryRun bool) error {
 	// remove remote branches
-	//   git branch -r --merged master | sed -e "s/ *\(.*\) */\1/" | grep "^origin/" | sed -e "s/origin\///" | grep -v "HEAD -> " |  grep -vE $EXCLUDED_BRANCHS | xargs -I% git push --delete origin %
 	// list branches
 	//   git branch -r --merged master
-	// origin/HEAD -> origin/master
-	// origin/master
 	for remote, branches := range cfg.Remote {
 		removedBranchCandidates := map[string]string{}
 		for _, branch := range branches {
@@ -102,10 +104,14 @@ func rmRemoteBranch(cfg models.Cfg) error {
 			continue
 		}
 		// remove branches
-		fmt.Printf("git %s\n", strings.Join(gitPushCmdArgs, " "))
-		_, err := exec.Command("git", gitPushCmdArgs...).Output()
-		if err != nil {
-			return err
+		if isDryRun {
+			fmt.Printf("[Dry Run] git %s\n", strings.Join(gitPushCmdArgs, " "))
+		} else {
+			fmt.Printf("git %s\n", strings.Join(gitPushCmdArgs, " "))
+			_, err := exec.Command("git", gitPushCmdArgs...).Output()
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil
@@ -131,7 +137,7 @@ func getCfg(wd string) (*models.Cfg, error) {
 	return &cfg, err
 }
 
-func runCore() error {
+func runCore(isDryRun bool) error {
 	// remove branches
 	// find configuration file
 	wd, err := os.Getwd()
@@ -142,15 +148,16 @@ func runCore() error {
 	if err != nil {
 		return err
 	}
-	err = rmLocalBranch(*cfg)
+	err = rmLocalBranch(*cfg, isDryRun)
 	if err != nil {
 		return err
 	}
-	return rmRemoteBranch(*cfg)
+	return rmRemoteBranch(*cfg, isDryRun)
 }
 
 func Run(c *cli.Context) error {
-	err := runCore()
+	isDryRun := c.Bool("dry-run")
+	err := runCore(isDryRun)
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
