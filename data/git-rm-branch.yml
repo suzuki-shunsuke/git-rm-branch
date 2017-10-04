@@ -1,7 +1,7 @@
 confirm: false
 local:
   - master
-remotes:
+remote:
   origin:
     - master
     - develop

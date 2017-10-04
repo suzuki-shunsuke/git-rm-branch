@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 )
 
+var CONFIG_FILENAME = ".git-rm-branch.yml"
+
 func FindRoot(startDir string) (string, error) {
 	// find .git
 	dir := startDir

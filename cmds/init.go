@@ -11,14 +11,12 @@ import (
 	"github.com/suzuki-shunsuke/git-rm-branch/services"
 )
 
-var CONFIG_FILENAME = ".git-rm-branch.yml"
-
 func core(wd string) error {
 	rootDir, err := services.FindRoot(wd)
 	if err != nil {
 		return err
 	}
-	dest := filepath.Join(rootDir, CONFIG_FILENAME)
+	dest := filepath.Join(rootDir, services.CONFIG_FILENAME)
 	if _, err = os.Stat(dest); err == nil {
 		return nil
 	}
