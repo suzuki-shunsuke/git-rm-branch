@@ -125,17 +125,12 @@ func rmRemoteBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 	return nil
 }
 
-func getCfg(wd string) (*models.Cfg, error) {
-	rootDir, err := services.FindRoot(wd)
-	if err != nil {
-		return nil, err
-	}
-	dest := filepath.Join(rootDir, services.CONFIG_FILENAME)
-	if _, err = os.Stat(dest); err != nil {
+func getCfg(cfgFilePath string) (*models.Cfg, error) {
+	if _, err := os.Stat(cfgFilePath); err != nil {
 		return nil, errors.New("Configuration file is not found.")
 	}
 	// read configuration file
-	buf, err := ioutil.ReadFile(dest)
+	buf, err := ioutil.ReadFile(cfgFilePath)
 	if err != nil {
 		return nil, err
 	}
@@ -145,17 +140,31 @@ func getCfg(wd string) (*models.Cfg, error) {
 	return &cfg, err
 }
 
-func runCore(isDryRun, isQuiet, isOnlyLocal bool) error {
+func findCfg(wd string) (string, error) {
+	rootDir, err := services.FindRoot(wd)
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(rootDir, services.CONFIG_FILENAME), nil
+}
+
+func runCore(isDryRun, isQuiet, isOnlyLocal bool, cfgFilePath string) error {
 	// remove branches
 	// find configuration file
 	if isDryRun && isQuiet {
 		return errors.New("Both --dry-run and --quiet options must not be used.")
 	}
-	wd, err := os.Getwd()
-	if err != nil {
-		return err
+	if cfgFilePath == "" {
+		wd, err := os.Getwd()
+		if err != nil {
+			return err
+		}
+		cfgFilePath, err = findCfg(wd)
+		if err != nil {
+			return err
+		}
 	}
-	cfg, err := getCfg(wd)
+	cfg, err := getCfg(cfgFilePath)
 	if err != nil {
 		return err
 	}
@@ -173,7 +182,8 @@ func Run(c *cli.Context) error {
 	isDryRun := c.Bool("dry-run")
 	isQuiet := c.Bool("quiet")
 	isOnlyLocal := c.Bool("local")
-	err := runCore(isDryRun, isQuiet, isOnlyLocal)
+	cfgFilePath := c.String("config")
+	err := runCore(isDryRun, isQuiet, isOnlyLocal, cfgFilePath)
 	if err != nil {
 		return cli.NewExitError(err, 1)
 	}
