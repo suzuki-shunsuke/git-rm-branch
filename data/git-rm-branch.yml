@@ -1,4 +1,3 @@
-confirm: false
 local:
   - master
 remote:
