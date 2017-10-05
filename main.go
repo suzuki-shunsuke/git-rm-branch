@@ -10,6 +10,8 @@ import (
 
 func main() {
 	app := cli.NewApp()
+	app.Usage = "remove git's merged branches"
+	app.Version = "1.0.0"
 
 	app.Commands = []cli.Command{
 		{
@@ -19,20 +21,24 @@ func main() {
 		},
 		{
 			Name:   "run",
-			Usage:  "remove branches",
+			Usage:  "remove merged branches",
 			Action: cmds.Run,
 			Flags: []cli.Flag{
 				cli.StringFlag{
-					Name: "config",
+					Name:  "config",
+					Usage: "The path of the configuration file",
 				},
 				cli.BoolFlag{
-					Name: "dry-run",
+					Name:  "dry-run",
+					Usage: "don't remove branches but print commands to remove branches",
 				},
 				cli.BoolFlag{
-					Name: "quiet",
+					Name:  "quiet",
+					Usage: "don't print commands",
 				},
 				cli.BoolFlag{
-					Name: "local",
+					Name:  "local",
+					Usage: "remove only local branches",
 				}},
 		},
 	}
