@@ -1,6 +1,11 @@
 local:
-  - master
+  protected:
+    - master
+  merged:
+    - origin/master
 remote:
   origin:
-    - master
-    - develop
+    protected:
+      - master
+    merged:
+      - origin/master

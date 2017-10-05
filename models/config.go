@@ -1,6 +1,6 @@
 package models
 
 type Cfg struct {
-	Local  []string
-	Remote map[string][]string
+	Local  map[string][]string
+	Remote map[string]map[string][]string
 }
