@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "commitmsg": "validate-commit-msg"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "validate-commit-msg": "^2.14.0"
+  }
+}
