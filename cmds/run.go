@@ -26,7 +26,7 @@ func rmLocalBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 	for _, branch := range mergedBranches {
 		out, err := exec.Command("git", "branch", "--merged", branch).CombinedOutput()
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "git branch --merged %s\n%x", branch, out)
+			fmt.Fprintf(os.Stderr, "git branch --merged %s\n%s", branch, out)
 			return err
 		}
 		for _, s := range strings.Split(string(out), "\n") {
@@ -66,7 +66,7 @@ func rmLocalBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 		out, err := exec.Command("git", gitBranchCmdArgs...).CombinedOutput()
 		if err != nil {
 			if isQuiet {
-				fmt.Fprintf(os.Stderr, "git %s\n%x", strings.Join(gitBranchCmdArgs, " "), out)
+				fmt.Fprintf(os.Stderr, "git %s\n%s", strings.Join(gitBranchCmdArgs, " "), out)
 			} else {
 				fmt.Fprint(os.Stderr, string(out))
 			}
@@ -86,7 +86,7 @@ func rmRemoteBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 		for _, branch := range mergedBranches {
 			out, err := exec.Command("git", "branch", "-r", "--merged", branch).CombinedOutput()
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "git branch -r --merged %s\n%x", branch, out)
+				fmt.Fprintf(os.Stderr, "git branch -r --merged %s\n%s", branch, out)
 				return err
 			}
 			for _, s := range strings.Split(string(out), "\n") {
@@ -129,7 +129,7 @@ func rmRemoteBranch(cfg models.Cfg, isDryRun, isQuiet bool) error {
 			out, err := exec.Command("git", gitPushCmdArgs...).CombinedOutput()
 			if err != nil {
 				if isQuiet {
-					fmt.Fprintf(os.Stderr, "git %s\n%x", strings.Join(gitPushCmdArgs, " "), out)
+					fmt.Fprintf(os.Stderr, "git %s\n%s", strings.Join(gitPushCmdArgs, " "), out)
 				} else {
 					fmt.Fprint(os.Stderr, string(out))
 				}
