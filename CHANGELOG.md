@@ -1,11 +1,13 @@
 # Change Log
 
+## [1.0.3](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.3) (2017-10-28)
+[Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.2...1.0.3)
+
 ## [1.0.2](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.2) (2017-10-06)
 [Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.1...1.0.2)
 
-**Fixed bugs:**
+**Merged pull requests:**
 
-- Fix to show appropriate error messages when it is failed to remove remote branches. [\#2](https://github.com/suzuki-shunsuke/git-rm-branch/issues/2)
 - fix: print \[\]byte properly [\#7](https://github.com/suzuki-shunsuke/git-rm-branch/pull/7) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
 
 ## [1.0.1](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.1) (2017-10-06)
@@ -18,7 +20,7 @@
 ## [1.0.0](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.0) (2017-10-05)
 [Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/v0.1.0...1.0.0)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
 - implement basic functions [\#1](https://github.com/suzuki-shunsuke/git-rm-branch/pull/1) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
 
