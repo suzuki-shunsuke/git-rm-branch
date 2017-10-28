@@ -11,7 +11,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Usage = "remove git's merged branches"
-	app.Version = "1.0.0"
+	app.Version = "1.0.3"
 
 	app.Commands = []cli.Command{
 		{
