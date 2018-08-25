@@ -2,7 +2,7 @@ local:
   protected:
     - master
   merged:
-    - origin/master
+    - master
 remote:
   origin:
     protected:

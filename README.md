@@ -1,5 +1,10 @@
 # git-rm-branch
 
+[![CircleCI](https://circleci.com/gh/suzuki-shunsuke/git-rm-branch.svg?style=svg)](https://circleci.com/gh/suzuki-shunsuke/git-rm-branch)
+[![codecov](https://codecov.io/gh/suzuki-shunsuke/git-rm-branch/branch/master/graph/badge.svg)](https://codecov.io/gh/suzuki-shunsuke/git-rm-branch)
+[![Go Report Card](https://goreportcard.com/badge/github.com/suzuki-shunsuke/git-rm-branch)](https://goreportcard.com/report/github.com/suzuki-shunsuke/git-rm-branch)
+[![GitHub last commit](https://img.shields.io/github/last-commit/suzuki-shunsuke/git-rm-branch.svg)](https://github.com/suzuki-shunsuke/git-rm-branch)
+[![GitHub tag](https://img.shields.io/github/tag/suzuki-shunsuke/git-rm-branch.svg)](https://github.com/suzuki-shunsuke/git-rm-branch/releases)
 [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/suzuki-shunsuke/git-rm-branch/master/LICENSE)
 
 cli tool to remove merged branches

@@ -1,9 +1,17 @@
 {
   "scripts": {
-    "commitmsg": "validate-commit-msg"
+    "test": "go test -covermode=atomic ./...",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "changelog": "github_changelog_generator --no-unreleased --no-issue",
+    "tag": "bash script/tag.sh",
+    "release": "bash script/release.sh",
+    "fmt": "bash script/fmt.sh",
+    "c": "bash script/coverage.sh",
+    "gen-mock": "bash script/gen_mock.sh"
   },
   "devDependencies": {
     "husky": "^0.14.3",
-    "validate-commit-msg": "^2.14.0"
+    "@commitlint/cli": "^6.1.3",
+    "@commitlint/config-angular": "^6.1.3"
   }
 }
