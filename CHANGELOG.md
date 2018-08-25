@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.5](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.5) (2018-08-25)
+[Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.4...1.0.5)
+
+**Merged pull requests:**
+
+- build: add .goreleaser.yml [\#9](https://github.com/suzuki-shunsuke/git-rm-branch/pull/9) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
+
 ## [1.0.4](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.4) (2018-08-25)
 [Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.3...1.0.4)
 
