@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.0.4](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.4) (2018-08-25)
+[Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.3...1.0.4)
+
+**Merged pull requests:**
+
+- Refactor/refactor [\#8](https://github.com/suzuki-shunsuke/git-rm-branch/pull/8) ([suzuki-shunsuke](https://github.com/suzuki-shunsuke))
+
 ## [1.0.3](https://github.com/suzuki-shunsuke/git-rm-branch/tree/1.0.3) (2017-10-28)
 [Full Changelog](https://github.com/suzuki-shunsuke/git-rm-branch/compare/1.0.2...1.0.3)
 
