@@ -16,7 +16,7 @@ import (
 // RunCommand removes merged branches.
 func RunCommand(isDryRun, isQuiet, isOnlyLocal bool, cfgFilePath string, osIntf domain.OSIntf, ioutilIntf domain.IOUtilIntf, execIntf domain.ExecIntf) error {
 	if isDryRun && isQuiet {
-		return fmt.Errorf("Both --dry-run and --quiet options must not be used.")
+		return fmt.Errorf("both --dry-run and --quiet options must not be used")
 	}
 	if cfgFilePath == "" {
 		wd, err := osIntf.Getwd()
@@ -102,7 +102,7 @@ func findCfg(wd string, osIntf domain.OSIntf) (string, error) {
 
 func getCfg(cfgFilePath string, osIntf domain.OSIntf, ioutilIntf domain.IOUtilIntf) (*domain.Cfg, error) {
 	if _, err := osIntf.Stat(cfgFilePath); err != nil {
-		return nil, fmt.Errorf("Configuration file is not found.")
+		return nil, fmt.Errorf("configuration file is not found")
 	}
 	// read configuration file
 	buf, err := ioutilIntf.ReadFile(cfgFilePath)

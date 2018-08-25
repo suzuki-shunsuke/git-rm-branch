@@ -5,10 +5,11 @@
 package usecase
 
 import (
-	gomock "github.com/golang/mock/gomock"
 	os "os"
 	reflect "reflect"
 	time "time"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockOSIntf is a mock of OSIntf interface
