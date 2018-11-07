@@ -7,7 +7,7 @@ import (
 
 	"github.com/scylladb/go-set/strset"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 func listLocalMergedBranches(branches []string, execIntf domain.ExecIntf) (*strset.Set, error) {

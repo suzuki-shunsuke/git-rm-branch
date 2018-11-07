@@ -6,7 +6,7 @@ import (
 	"github.com/urfave/cli"
 
 	"github.com/suzuki-shunsuke/git-rm-branch/cmds"
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 func main() {
