@@ -1,10 +1,10 @@
-package cmds
+package handler
 
 import (
 	"github.com/urfave/cli"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/infra"
-	"github.com/suzuki-shunsuke/git-rm-branch/usecase"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/infra"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/usecase"
 )
 
 var (

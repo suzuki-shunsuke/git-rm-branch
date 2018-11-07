@@ -8,7 +8,7 @@ import (
 	"github.com/scylladb/go-set/strset"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 func Test_rmRemoteBranch(t *testing.T) {

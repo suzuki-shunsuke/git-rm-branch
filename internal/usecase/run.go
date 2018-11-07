@@ -10,7 +10,7 @@ import (
 
 	"github.com/scylladb/go-set/strset"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 // RunCommand removes merged branches.

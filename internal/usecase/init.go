@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 // InitCommand creates a configuration file if it doesn't exist.

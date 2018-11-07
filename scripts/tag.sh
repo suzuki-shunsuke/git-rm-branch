@@ -1,5 +1,5 @@
 # Usage
-#   bash script/tag.sh 0.3.2
+#   bash scripts/tag.sh 0.3.2
 
 if [ $# -gt 1 ]; then
   echo "too many arguments" > /dev/stderr
@@ -18,15 +18,15 @@ cd `dirname $0`/.. || exit 1
 
 TAG=$1 || exit 1
 echo "TAG: $TAG" || exit 1
-echo "create domain/version.go" || exit 1
-cat << EOS > domain/version.go
+echo "create internal/domain/version.go" || exit 1
+cat << EOS > internal/domain/version.go
 package domain
 
 // Version is the git-rm-branch's version.
 const Version = "$TAG"
 EOS
 
-git add domain/version.go || exit 1
+git add internal/domain/version.go || exit 1
 git commit -m "build: update version to $TAG" || exit 1
 echo "git tag $TAG" || exit 1
 git tag $TAG || exit 1

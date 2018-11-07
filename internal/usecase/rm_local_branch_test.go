@@ -7,7 +7,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/suzuki-shunsuke/git-rm-branch/domain"
+	"github.com/suzuki-shunsuke/git-rm-branch/internal/domain"
 )
 
 func Test_listLocalMergedBranches(t *testing.T) {
