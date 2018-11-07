@@ -1,13 +1,17 @@
 {
   "scripts": {
     "test": "go test -covermode=atomic ./...",
-    "commitmsg": "commitlint -e $GIT_PARAMS",
     "changelog": "github_changelog_generator --no-unreleased --no-issue",
     "tag": "bash scripts/tag.sh",
     "release": "bash scripts/release.sh",
     "fmt": "bash scripts/fmt.sh",
     "c": "bash scripts/coverage.sh",
     "gen-mock": "bash scripts/gen_mock.sh"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
   },
   "devDependencies": {
     "husky": "^1.1.3",
