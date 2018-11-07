@@ -1,4 +1,4 @@
-package cmds
+package handler
 
 import (
 	"github.com/urfave/cli"
