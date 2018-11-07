@@ -1,5 +1,5 @@
 # Usage
-#   bash script/tag.sh 0.3.2
+#   bash scripts/tag.sh 0.3.2
 
 if [ $# -gt 1 ]; then
   echo "too many arguments" > /dev/stderr

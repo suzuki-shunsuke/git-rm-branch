@@ -3,11 +3,11 @@
     "test": "go test -covermode=atomic ./...",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "changelog": "github_changelog_generator --no-unreleased --no-issue",
-    "tag": "bash script/tag.sh",
-    "release": "bash script/release.sh",
-    "fmt": "bash script/fmt.sh",
-    "c": "bash script/coverage.sh",
-    "gen-mock": "bash script/gen_mock.sh"
+    "tag": "bash scripts/tag.sh",
+    "release": "bash scripts/release.sh",
+    "fmt": "bash scripts/fmt.sh",
+    "c": "bash scripts/coverage.sh",
+    "gen-mock": "bash scripts/gen_mock.sh"
   },
   "devDependencies": {
     "husky": "^0.14.3",
