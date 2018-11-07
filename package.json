@@ -5,8 +5,11 @@
     "tag": "bash scripts/tag.sh",
     "release": "bash scripts/release.sh",
     "fmt": "bash scripts/fmt.sh",
+    "vet": "go vet ./...",
+    "lint": "gometalinter ./...",
     "c": "bash scripts/coverage.sh",
-    "gen-mock": "bash scripts/gen_mock.sh"
+    "gen-mock": "bash scripts/gen_mock.sh",
+    "ci-local": "circleci build -e LOCAL=true"
   },
   "husky": {
     "hooks": {
