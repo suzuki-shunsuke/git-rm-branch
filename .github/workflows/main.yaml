@@ -1,0 +1,14 @@
+---
+name: CI
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v1
+    - name: download go modules
+      uses: docker://golang:1.13.4
+      run: |
+        go mod download
