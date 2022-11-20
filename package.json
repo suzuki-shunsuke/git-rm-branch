@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "husky": "4.2.5",
-    "@commitlint/cli": "8.3.5",
+    "@commitlint/cli": "17.2.0",
     "@commitlint/config-angular": "8.3.4"
   }
 }
